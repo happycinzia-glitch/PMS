@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>專案管理系統</title>
+  <link rel="icon" type="image/png" href="/img/logo.png">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand" onclick="go('home')" title="回系統說明"><img src="/img/logo.png" alt="公司標誌"><span>專案管理系統</span></div>
+      <nav id="nav"></nav>
+      <div class="userbox">
+        <div class="name" id="uName">—</div>
+        <button class="btn ghost sm" style="margin-top:10px;width:100%" id="changePwBtn">變更密碼</button>
+        <button class="btn ghost sm" style="margin-top:8px;width:100%" id="logoutBtn">登出</button>
+      </div>
+    </aside>
+    <div class="main">
+      <div class="topbar">
+        <h2 id="pageTitle">—</h2>
+        <div id="topActions"></div>
+      </div>
+      <div class="content" id="content"></div>
+    </div>
+  </div>
+
+  <!-- 手機版選單按鈕 (小螢幕才顯示) -->
+  <button class="menu-btn" onclick="document.querySelector('.sidebar').classList.toggle('open')" title="選單">☰</button>
+
+  <!-- 通用彈窗 -->
+  <div class="modal-mask" id="modalMask">
+    <div class="modal">
+      <div class="modal-head">
+        <h3 id="modalTitle">—</h3>
+        <button class="close-x" id="modalClose">&times;</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-foot" id="modalFoot"></div>
+    </div>
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

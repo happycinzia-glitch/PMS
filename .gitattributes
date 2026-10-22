@@ -1,0 +1,2 @@
+# 啟動系統.bat 是 CP950(Big5) + CRLF，Git 不可轉換換行或編碼，否則在 Windows 上會亂碼或視窗直接關閉 (見 CLAUDE.md)
+*.bat -text

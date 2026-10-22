@@ -1,0 +1,27 @@
+# ⚠️ 這個檔案很重要，請不要刪除。
+# 它負責擋住不該上傳到 GitHub 的東西。上傳過的內容會留在提交歷史裡，很難清乾淨。
+
+# ── 你的營運資料（客戶、報價、帳款、附件）──
+data/
+
+# ── 機密設定（資料庫連線字串、Google 金鑰）──
+.env
+.env.*
+!.env.example
+
+# ── 取得 Google 授權的一次性工具（過程會碰到金鑰）──
+get-token.js
+token.json
+credentials.json
+
+# ── 相依套件，可由 npm install 重新產生 ──
+node_modules/
+
+# ── 記錄檔與系統暫存 ──
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# ── Claude Code 的本機設定 ──
+.claude/settings.local.json

@@ -1,0 +1,288 @@
+:root {
+  --bg: #f5f7f0;
+  --panel: #ffffff;
+  --logo: #98c810;          /* LOGO 蘋果綠 (品牌主色) */
+  --primary: #6b9a10;       /* 按鈕/連結 (略深以確保白字清楚) */
+  --primary-dark: #567f0c;  /* hover */
+  --accent: #98c810;        /* 高亮/作用中 */
+  --sidebar-bg: #26340c;    /* 深橄欖綠側欄 */
+  --sidebar-hover: #34490f;
+  --text: #24310f;
+  --muted: #6b7280;
+  --border: #e6ebdd;
+  --danger: #dc2626;
+  --success: #4d7a0c;
+  --warn: #d97706;
+  --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0; height: 100%;
+  font-family: "Microsoft JhengHei", "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--bg); color: var(--text); font-size: 14px;
+}
+button { font-family: inherit; cursor: pointer; }
+input, select, textarea { font-family: inherit; font-size: 14px; }
+
+/* ── 登入頁 ── */
+.login-wrap {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 100vh; padding: 20px;
+}
+.login-card {
+  background: var(--panel); border-radius: 14px; box-shadow: var(--shadow);
+  padding: 40px 36px; width: 100%; max-width: 380px;
+}
+.login-card .logo { display: block; width: 96px; height: 96px; margin: 0 auto 14px; border-radius: 50%; box-shadow: 0 4px 14px rgba(152,200,16,.35); }
+.login-card h1 { font-size: 22px; margin: 0 0 4px; text-align: center; }
+.login-card .sub { color: var(--muted); text-align: center; margin: 0 0 28px; font-size: 13px; }
+.field { margin-bottom: 16px; }
+.field label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 13px; }
+.field input, .field select, .field textarea {
+  width: 100%; padding: 10px 12px; border: 1px solid var(--border);
+  border-radius: 8px; outline: none;
+}
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--primary); }
+.btn {
+  display: inline-flex; align-items: center; gap: 6px; justify-content: center;
+  padding: 10px 16px; border: 1px solid transparent; border-radius: 8px;
+  background: var(--primary); color: #fff; font-weight: 600;
+}
+.btn:hover { background: var(--primary-dark); }
+.btn.block { width: 100%; }
+.btn.ghost { background: #fff; color: var(--text); border-color: var(--border); }
+.btn.ghost:hover { background: #f3f4f6; }
+.btn.danger { background: var(--danger); }
+.btn.danger:hover { background: #b91c1c; }
+.btn.sm { padding: 6px 10px; font-size: 13px; }
+.msg { margin-top: 14px; padding: 10px 12px; border-radius: 8px; font-size: 13px; display: none; }
+.msg.error { background: #fef2f2; color: var(--danger); border: 1px solid #fecaca; display: block; }
+.msg.ok { background: #f0fdf4; color: var(--success); border: 1px solid #bbf7d0; display: block; }
+
+/* ── 主框架 ── */
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 120px; background: var(--sidebar-bg); color: #d7e4c0; flex-shrink: 0;
+  display: flex; flex-direction: column;
+}
+.sidebar .brand { padding: 16px 6px; font-size: 14px; font-weight: 700; color: #fff; border-bottom: 1px solid rgba(255,255,255,.08); display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; line-height: 1.3; cursor: pointer; }
+.sidebar .brand:hover img { box-shadow: 0 0 0 3px rgba(152,200,16,.5); }
+.sidebar .brand img { width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0; border: 2px solid #fff; box-shadow: 0 1px 5px rgba(0,0,0,.35); background: #fff; }
+.sidebar nav { flex: 1; padding: 10px 0; overflow-y: auto; }
+.sidebar nav a {
+  display: block; padding: 11px 8px; color: #d7e4c0; text-decoration: none; font-size: 14px;
+  border-left: 3px solid transparent; text-align: center;
+}
+.sidebar nav a:hover { background: var(--sidebar-hover); color: #fff; }
+.sidebar nav a.active { background: var(--sidebar-hover); color: #fff; border-left-color: var(--accent); }
+.sidebar .userbox { padding: 12px 8px; border-top: 1px solid rgba(255,255,255,.08); font-size: 12px; text-align: center; }
+.sidebar .userbox .name { color: #fff; font-weight: 600; word-break: break-all; }
+.sidebar .userbox .role { color: #9ca3af; font-size: 12px; }
+
+.main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.topbar {
+  background: var(--panel); border-bottom: 1px solid var(--border);
+  padding: 14px 24px; display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 20;   /* 捲動時標題與按鍵固定在上方 */
+  box-shadow: 0 2px 6px rgba(0,0,0,.05);
+}
+.topbar h2 { margin: 0; font-size: 18px; }
+.content { padding: 24px; flex: 1; }
+
+.toolbar { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
+.toolbar input.search { flex: 1; min-width: 200px; max-width: 360px; padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px; }
+
+/* 欄位多的明細表可左右捲動 (原為 overflow:hidden 會把右側欄位切掉) */
+.card { background: var(--panel); border-radius: 12px; box-shadow: var(--shadow); overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+th { background: #f9fafb; font-size: 13px; color: var(--muted); font-weight: 600; }
+tbody tr:hover { background: #f9fafb; }
+td.num, th.num { text-align: right; }
+.link { color: var(--primary); font-weight: 600; cursor: pointer; text-decoration: none; }
+.link:hover { text-decoration: underline; }
+.empty { padding: 40px; text-align: center; color: var(--muted); }
+
+.badge { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+.badge.green { background: #eaf4d3; color: #4d7a0c; }
+.badge.gray  { background: #f3f4f6; color: #4b5563; }
+.badge.blue  { background: #dbeafe; color: #1e40af; }
+.badge.amber { background: #fef3c7; color: #92400e; }
+.badge.red   { background: #fee2e2; color: #991b1b; }
+
+/* ── 彈窗 ── */
+.modal-mask {
+  position: fixed; inset: 0; background: rgba(17,24,39,.5);
+  display: none; align-items: flex-start; justify-content: center; padding: 40px 16px; z-index: 50; overflow-y: auto;
+}
+.modal-mask.show { display: flex; }
+.modal {
+  background: var(--panel); border-radius: 14px; box-shadow: 0 20px 40px rgba(0,0,0,.2);
+  width: 100%; max-width: 760px; max-height: 90vh; display: flex; flex-direction: column;
+}
+/* 含報價明細(欄位多)的彈窗放寬；瀏覽器不支援 :has 時仍可左右捲動 */
+.modal:has(.subtable-wrap) { max-width: 1040px; }
+.modal .modal-head { padding: 18px 22px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+.modal .modal-head h3 { margin: 0; font-size: 17px; }
+.modal .modal-body { padding: 22px; overflow-y: auto; }
+.modal .modal-foot { padding: 16px 22px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 10px; }
+.close-x { background: none; border: none; font-size: 22px; color: var(--muted); line-height: 1; }
+
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-grid .full { grid-column: 1 / -1; }
+.tabs { display: flex; gap: 6px; margin-bottom: 16px; border-bottom: 2px solid var(--border); }
+.tabs .tab { padding: 10px 22px; border: none; background: none; font-size: 15px; font-weight: 600; color: var(--muted); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; }
+.tabs .tab:hover { color: var(--text); }
+.tabs .tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+.home-wrap { display: flex; justify-content: center; align-items: flex-start; }
+.home-map { position: relative; width: 100%; max-width: 1100px; }
+.home-img { width: 100%; height: auto; display: block; }
+/* 首頁圖上的可點選熱區 (對應左側功能) */
+.home-spot { position: absolute; cursor: pointer; border-radius: 16px; }
+.home-spot:hover { box-shadow: inset 0 0 0 3px var(--logo), 0 4px 14px rgba(152,200,16,.35); background: rgba(152,200,16,.07); }
+/* 系統說明頁：隱藏上方標題列、內容不留白，圖片置中靠上 */
+.main.home-view .topbar { display: none; }
+.main.home-view .content { padding: 0; }
+.detail-actions { display: flex; gap: 8px; justify-content: flex-end; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+.field input[readonly] { background: #f3f4f6; color: #6b7280; cursor: not-allowed; }
+.dl { display: grid; grid-template-columns: 140px 1fr; gap: 8px 14px; }
+.dl dt { color: var(--muted); font-weight: 600; }
+.dl dd { margin: 0; }
+
+.subtable-wrap { overflow-x: auto; }   /* 明細欄位多時可左右捲動 */
+.subtable { margin-top: 8px; }
+.subtable th, .subtable td { padding: 8px 10px; font-size: 13px; }
+.section-title { font-weight: 700; margin: 20px 0 8px; font-size: 15px; border-left: 3px solid var(--primary); padding-left: 8px; }
+.row-actions { display: flex; gap: 6px; }
+.hint { color: var(--muted); font-size: 12px; margin-top: 4px; }
+.quote-totals { margin-top: 14px; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.quote-totals > div { display: flex; gap: 16px; min-width: 220px; justify-content: space-between; padding: 4px 10px; }
+.quote-totals > div span { color: var(--muted); }
+.quote-totals > div b { font-variant-numeric: tabular-nums; }
+.quote-totals .grand { border-top: 2px solid var(--primary); font-size: 16px; }
+.quote-totals .grand b { color: var(--primary); }
+.multicheck { display: flex; flex-wrap: wrap; gap: 8px 16px; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+
+/* ── 會計報表 ── */
+.toolbar select { padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px; background: #fff; color: var(--text); }
+.toolbar .tb-label { font-weight: 600; font-size: 13px; color: var(--muted); }
+.toolbar .tb-sep { color: var(--muted); }
+tfoot td { font-weight: 700; background: #f9fafb; border-top: 2px solid var(--border); border-bottom: none; }
+.sum-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.sum-card { background: var(--panel); border-radius: 12px; box-shadow: var(--shadow); padding: 14px 16px; }
+.sum-card .k { color: var(--muted); font-size: 12px; font-weight: 600; margin-bottom: 6px; }
+.sum-card .v { font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.sum-card.amber .v { color: var(--warn); }
+.sum-card.hl { border: 2px solid var(--primary); }
+.sum-card.hl .v { color: var(--primary); font-size: 24px; }
+.sum-card.neg .v { color: var(--danger); }
+.neg-num { color: var(--danger); }
+
+/* ── 專案進度追蹤：甘特圖 ── */
+.gantt { border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; background: #fcfdf9; }
+.gantt .g-head { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 8px; font-weight: 600; }
+.gantt .g-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.gantt .g-label { width: 120px; flex-shrink: 0; font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.gantt .g-track { position: relative; flex: 1; height: 20px; background: #f0f2ea; border-radius: 6px; overflow: hidden; }
+.gantt .g-bar { position: absolute; top: 0; height: 100%; border-radius: 6px; }
+.gantt .g-bar.plan { background: #d5e6ac; }
+.gantt .g-bar.plan.late { background: #f3cfcf; }
+.gantt .g-bar.actual { background: var(--primary); opacity: .92; height: 10px; top: 5px; }
+.gantt .g-bar.actual.late { background: var(--warn); }
+.gantt .g-today { position: absolute; top: 0; height: 100%; width: 2px; background: var(--danger); }
+.gantt .g-date { width: 84px; flex-shrink: 0; font-size: 12px; color: var(--muted); text-align: right; }
+.gantt .g-legend { display: flex; gap: 14px; align-items: center; font-size: 12px; color: var(--muted); margin-top: 8px; }
+.gantt .lg { display: inline-block; width: 14px; height: 9px; border-radius: 3px; margin-right: 4px; vertical-align: middle; }
+.gantt .lg.plan { background: #d5e6ac; }
+.gantt .lg.actual { background: var(--primary); }
+.gantt .lg.latebox { background: #f3cfcf; }
+.gantt .lg.todayline { width: 2px; height: 12px; background: var(--danger); border-radius: 0; }
+
+/* ── 公司報表：損益表 (財務報表型式) ── */
+.fin-card { max-width: 640px; margin-bottom: 16px; }
+.fin-table { width: 100%; border-collapse: collapse; }
+.fin-table th { background: var(--sidebar-bg); color: #fff; font-size: 14px; padding: 12px 16px; }
+.fin-table td { padding: 8px 16px; border-bottom: none; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.fin-table .fin-pct { width: 70px; color: var(--muted); font-size: 12px; }
+.fin-table .fin-sec td { font-weight: 700; padding-top: 12px; color: var(--text); border-bottom: 1px solid var(--border); }
+.fin-table .fin-label { text-align: left; }
+.fin-table .fin-sub td { font-weight: 700; border-top: 1px solid var(--border); background: #f7faf0; }
+.fin-table .fin-total td { font-weight: 800; font-size: 16px; border-top: 3px double var(--primary); background: #eef6d8; padding: 12px 16px; }
+.fin-table tbody tr:hover { background: inherit; }
+
+/* AI 發票辨識 */
+.ai-scan { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; padding: 10px 12px; background: #f7faf0; border: 1px dashed var(--primary); border-radius: 10px; }
+.ai-scan .hint { margin: 0; }
+
+/* 首頁待辦提醒 */
+.rem-card { max-width: 1100px; margin: 16px auto; padding: 0; }
+.rem-head { font-weight: 700; padding: 12px 16px; border-bottom: 1px solid var(--border); background: #f7faf0; }
+.rem-list { max-height: 260px; overflow-y: auto; padding: 6px 0; }
+.rem-item { display: block; padding: 7px 16px; font-size: 13px; color: var(--text); cursor: pointer; text-decoration: none; }
+.rem-item:hover { background: #f4f8ea; }
+
+/* 清單換頁列 (每頁 25 筆) */
+.pager { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 14px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+.pager-info { color: var(--muted); font-size: 13px; }
+.pager-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+
+/* 專案清單進度欄 */
+.prog { display: flex; align-items: center; gap: 8px; min-width: 110px; }
+.prog-bar { flex: 1; height: 8px; background: #eef1e6; border-radius: 999px; overflow: hidden; }
+.prog-fill { height: 100%; background: var(--primary); border-radius: 999px; }
+.prog-txt { font-size: 12px; color: var(--muted); font-weight: 600; white-space: nowrap; }
+/* 需比 .field label 優先，否則會被 display:block 拆散排版 */
+.field label.mc-item, .mc-item {
+  font-weight: 400; display: inline-flex; align-items: center;
+  gap: 5px; margin: 0; font-size: 14px; white-space: nowrap; cursor: pointer;
+}
+.mc-item input { margin: 0; flex-shrink: 0; }
+.right { text-align: right; }
+/* ── 手機版：側欄改為抽屜 + 漢堡按鈕 ── */
+.menu-btn {
+  display: none; position: fixed; right: 16px; bottom: 16px; z-index: 60;
+  width: 52px; height: 52px; border-radius: 50%; border: none;
+  background: var(--primary); color: #fff; font-size: 22px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.3); align-items: center; justify-content: center;
+}
+@media (max-width: 768px) {
+  .menu-btn { display: flex; }
+  .sidebar { position: fixed; left: -140px; top: 0; bottom: 0; z-index: 55; transition: left .2s ease; }
+  .sidebar.open { left: 0; box-shadow: 4px 0 18px rgba(0,0,0,.35); }
+  .content { padding: 14px; }
+  .topbar { padding: 10px 14px; }
+  .topbar h2 { font-size: 16px; }
+  .form-grid { grid-template-columns: 1fr; }
+  .dl { grid-template-columns: 104px 1fr; }
+  .fin-card { max-width: 100%; }
+  .toolbar input.search { min-width: 130px; }
+  .modal-mask { padding: 12px 8px; }
+  .modal .modal-body { padding: 14px; }
+  .sum-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+  .gantt .g-label { width: 82px; font-size: 12px; }
+  .gantt .g-date { width: 70px; }
+}
+
+/* 行內程式碼 / 網址 (備份設定頁的觸發網址等) */
+.hint code { background: #f2f5ea; border: 1px solid #dfe6cf; border-radius: 4px; padding: 0 5px; font-family: Consolas, monospace; font-size: 12px; word-break: break-all; }
+
+/* 報價明細：大項區塊 (一、木作工程 ＋ 小計) */
+.q-section { border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; margin-top: 12px; background: #fbfdf6; }
+.q-sec-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.q-sec-head .q-sec-no { font-size: 15px; min-width: 30px; }
+.q-sec-head .q-sec-name { width: 220px; padding: 7px 10px; border: 1px solid var(--border); border-radius: 8px; font-weight: 700; font-size: 14px; }
+.q-sec-head .q-sec-sum { color: var(--muted); }
+.q-sec-head .q-sec-sum b { color: var(--text); font-variant-numeric: tabular-nums; font-size: 15px; margin-left: 4px; }
+.q-sec-head .q-sec-btns { margin-left: auto; display: flex; gap: 6px; }
+/* 欄位旁附按鈕 (例：料號 + 查詢) */
+.input-row { display: flex; gap: 6px; align-items: center; }
+.input-row input, .input-row select { flex: 1; min-width: 0; }
+/* 料號／廠商查詢視窗：疊在表單彈窗之上 */
+.picker-mask { position: fixed; inset: 0; background: rgba(0,0,0,.35); z-index: 70; display: flex; align-items: flex-start; justify-content: center; padding: 60px 16px; overflow-y: auto; }
+.picker { background: var(--panel); border-radius: 14px; width: 100%; max-width: 860px; box-shadow: 0 10px 40px rgba(0,0,0,.25); }
+.picker .modal-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px 0; }
+.picker .modal-head h3 { margin: 0; font-size: 17px; }
+.picker-body { padding: 14px 18px 18px; }
+.picker table { width: 100%; }
+.q-excel-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 4px; }
+.subtable tr.sec-row td { background: #f3f8e6; font-weight: 700; }
